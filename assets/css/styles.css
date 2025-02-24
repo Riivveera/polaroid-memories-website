@@ -1,5 +1,5 @@
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Times New Roman', sans-serif;
     text-align: center;
     background-color: #f0f0f0;
 }
@@ -12,27 +12,55 @@ body {
 }
 
 .polaroid {
-    background: rgb(216, 121, 240);
-    padding: 10px;
-    box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
-    border: 1px solid #ccc;
-    width: 200px;
-    transform: rotate(-2deg);
-    transition: transform 0.2s;
+    perspective: 1000px;
 }
 
-.polaroid img {
+.polaroid-inner {
+    position: relative;
+    width: 200px;
+    transform-style: preserve-3d;
+    transition: transform 0.6s;
+}
+
+.polaroid.flipped .polaroid-inner {
+    transform: rotateY(180deg);
+}
+
+.polaroid-front, .polaroid-back {
+    position: absolute;
+    width: 100%;
+    backface-visibility: hidden;
+    border: 1px solid #ccc;
+    box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+    background: rgb(240, 121, 210);
+    padding: 20px;
+}
+
+.polaroid-front img {
     width: 100%;
     height: auto;
-    display: block;
 }
 
-.polaroid:hover {
-    transform: rotate(0deg) scale(1.05);
+.polaroid-back {
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .caption {
     font-family: 'Indie Flower', cursive;
     font-size: 18px;
     margin-top: 10px;
+}
+
+.close-btn {
+    margin-top: 10px;
+    background-color: #ff5e5e;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
 }
